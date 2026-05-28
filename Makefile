@@ -1,22 +1,22 @@
-TARGET := snake
-SRC    := snake.c
+PROGRAMS := who led fnd lcd button
 
 ifdef ARM
     CC     := arm-linux-gnueabihf-gcc
     CFLAGS := -static -Wall -O2
 else
     CC     := gcc
-    CFLAGS := -Wall -O2 -DNO_HARDWARE
+    CFLAGS := -Wall -O2
 endif
 
-all: $(TARGET)
+all: $(PROGRAMS)
 
-$(TARGET): $(SRC)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRC)
-	@echo "Build OK: $(TARGET)"
-	@file $(TARGET) || true
+who:    01_who.c     ; $(CC) $(CFLAGS) -o $@ $<
+led:    02_led.c     ; $(CC) $(CFLAGS) -o $@ $<
+fnd:    03_fnd.c     ; $(CC) $(CFLAGS) -o $@ $<
+lcd:    04_lcd.c     ; $(CC) $(CFLAGS) -o $@ $<
+button: 05_button.c  ; $(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(PROGRAMS)
 
 .PHONY: all clean
