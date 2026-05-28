@@ -1,4 +1,4 @@
-PROGRAMS := gpio_led bt_event buzzer
+PROGRAMS := who led fnd lcd button gpio_led bt_event buzzer
 
 ifdef ARM
     CC     := arm-linux-gnueabihf-gcc
@@ -10,6 +10,14 @@ endif
 
 all: $(PROGRAMS)
 
+# test M4
+who:    01_who.c     ; $(CC) $(CFLAGS) -o $@ $<
+led:    02_led.c     ; $(CC) $(CFLAGS) -o $@ $<
+fnd:    03_fnd.c     ; $(CC) $(CFLAGS) -o $@ $<
+lcd:    04_lcd.c     ; $(CC) $(CFLAGS) -o $@ $<
+button: 05_button.c  ; $(CC) $(CFLAGS) -o $@ $<
+
+# test Q6
 gpio_led: gpio_led.c
 	$(CC) $(CFLAGS) -o $@ $<
 
